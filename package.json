@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/nuot/FriendFinder#readme",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.0",
     "node": "^12.2.0"
   }
 }

@@ -1,12 +1,12 @@
-const  express = require ('express')
-const { join } = require('path')
+const express = require ('express')
+const { join } =require('path')
 const app = express()
 
-//route to homepage
-// app.get('/',(req, res) =>{
-//     res.sendFile(join(__dirname + '/public/home.html'))
-// })
-app.use(express.static)
-app.use(express.urlencoded({ extended: true}))
+app.use(express.static(join(__dirname,'public')))
+app.use(express.urlencoded( {extended: true}))
 app.use(express.json())
-app.listen(3000)
+
+require('./app/routing/apiRoutes')
+require('./app/routing/htmlRoutes')
+
+app.listen(3000, _ => console.log('Port is listening'))
