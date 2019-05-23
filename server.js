@@ -13,11 +13,11 @@ const express = require ('express')
 const app = express()
 const { join } = require('path')
 
-app.use(express.static(join(__dirname,'/public')))
+
 app.use(express.urlencoded( {extended: true}))
 app.use(express.json())
-
-require('./app/routes/htmlRoutes.js')(app)
+app.use(express.static(join(__dirname, '/app/public')))
+//require('./app/routes/htmlRoutes.js')(app)
 require('./app/routes/apiRoutes.js')(app)
 
 

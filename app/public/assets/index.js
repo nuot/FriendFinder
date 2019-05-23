@@ -1,37 +1,33 @@
-// const { fetch, alert } = window
+const { fetch, alert } = window
 
-// const getSurvey = _ => {
-//   fetch('/question')
-//     .then(r => r.json())
-//     .then(survey => {
-//         document.querySelector('#survey').innerHTML = ''
-//         survey.forEach(({ Question }) => {
-//         let surveyDiv = document.createElement('div')
-        
-        
-//         surveyDiv.innerHTML = `
-//           <h3>${Question}</h3>
-//           <select name="qOne" id="qOne" required>
-//                         <option value></option>
-//                         <option value="5" type="number">5 (Strongly Agree)</option>
-//                         <option value="4" type="number">4</option>
-//                         <option value="3" type="number">3</option>
-//                         <option value="2" type="number">2</option>
-//                         <option value="1" type="number">1 (Strongly Disagree)</option>
-//                     </select>
-//         `
-       
-//         document.querySelector('#survey').append(surveyDiv)
-        
-//       })
-//     })
-//     .catch(e => console.error(e))
-// }
-
-// getSurvey()
-
-document.querySelector('.submitBtn').addEventlistener(
-    'click', e =>{
-        console.log('submitted')
-    }
-)
+document.querySelector('#submitB').addEventListener('click', e => {
+    e.preventDefault()
+    fetch('/friends', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: document.querySelector('#name').value,
+            photo: document.querySelector('#url').value,
+            email: document.querySelector('#email').value,
+            scores:  [
+            document.querySelector('#q1').value,
+            document.querySelector('#q2').value,
+            document.querySelector('#q3').value,
+            document.querySelector('#q4').value,
+            document.querySelector('#q5').value,
+            document.querySelector('#q6').value,
+            document.querySelector('#q7').value,
+            document.querySelector('#q8').value,
+            document.querySelector('#q9').value,
+            document.querySelector('#q10').value
+        ]
+        })
+    })
+        .then(r => r.json())
+        .then( r => {
+            console.log(r)
+        })
+        .catch(e => console.error(e))
+    })
